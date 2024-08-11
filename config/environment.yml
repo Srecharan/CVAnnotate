@@ -1,0 +1,31 @@
+name: od
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - pytorch
+  - torchvision
+  - torchaudio
+  - cudatoolkit=11.8
+  - numpy
+  - pip:
+    - ultralytics==8.3.74
+    - ultralytics-thop==2.0.14
+    - opencv-python==4.11.0.86
+    - bagpy==0.5
+    - bitarray==3.0.0
+    - bitstring==4.3.0
+    - catkin-pkg==1.0.0
+    - pycryptodomex==3.21.0
+    - rospkg==1.6.0
+    - python-gnupg==0.5.4
+    - matplotlib==3.9.4
+    - pandas==2.2.3
+    - scipy==1.13.1
+    - seaborn==0.13.2
+    - pillow==11.1.0
+    - pyyaml==6.0.2
