@@ -1,0 +1,14 @@
+ultralytics==8.3.74
+torch==2.6.0+cu118
+torchvision==0.21.0+cu118
+opencv-python==4.11.0.86
+numpy==2.0.2
+bagpy==0.5
+pycryptodomex==3.21.0
+rospkg==1.6.0
+python-gnupg==2.3.1
+cv-bridge==1.13.0.post0
+py3rosmsgs==1.18.2
+matplotlib==3.9.4
+pandas==2.2.3
+pyyaml==6.0.2
