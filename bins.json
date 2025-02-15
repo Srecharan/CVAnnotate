@@ -1,0 +1,217 @@
+[
+    {
+        "topic_name": "/arena_camera_node_0/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "rectangle",
+                {
+                    "x": 0,
+                    "y": 85,
+                    "w": 440,
+                    "h": 170
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_0/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "rectangle",
+                {
+                    "x": 0,
+                    "y": 804,
+                    "w": 407,
+                    "h": 162
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_2/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "rectangle",
+                {
+                    "x": 0,
+                    "y": 64,
+                    "w": 415,
+                    "h": 190
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_2/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "rectangle",
+                {
+                    "x": 0,
+                    "y": 831,
+                    "w": 471,
+                    "h": 164
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_3/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "rectangle",
+                {
+                    "x": 0,
+                    "y": 100,
+                    "w": 446,
+                    "h": 208
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_3/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "rectangle",
+                {
+                    "x": 25,
+                    "y": 850,
+                    "w": 497,
+                    "h": 162
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_3/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "rectangle",
+                {
+                    "x": 951,
+                    "y": 52,
+                    "w": 272,
+                    "h": 167
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_3/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "rectangle",
+                {
+                    "x": 998,
+                    "y": 772,
+                    "w": 225,
+                    "h": 165
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_3/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "polygon",
+                [
+                    [
+                        355,
+                        378
+                    ],
+                    [
+                        854,
+                        320
+                    ],
+                    [
+                        905,
+                        550
+                    ],
+                    [
+                        377,
+                        617
+                    ],
+                    [
+                        358,
+                        380
+                    ]
+                ]
+            ],
+            [
+                "circle",
+                {
+                    "center": [
+                        755,
+                        498
+                    ],
+                    "radius": 111
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_3/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "rectangle",
+                {
+                    "x": 8,
+                    "y": 317,
+                    "w": 0,
+                    "h": 0
+                }
+            ]
+        ]
+    },
+    {
+        "topic_name": "/arena_camera_node_3/image_raw",
+        "place": "mb",
+        "rois": [
+            [
+                "polygon",
+                [
+                    [
+                        5,
+                        150
+                    ],
+                    [
+                        417,
+                        88
+                    ],
+                    [
+                        437,
+                        251
+                    ],
+                    [
+                        1,
+                        324
+                    ],
+                    [
+                        7,
+                        151
+                    ],
+                    [
+                        951,
+                        60
+                    ],
+                    [
+                        981,
+                        157
+                    ]
+                ]
+            ]
+        ]
+    }
+]
