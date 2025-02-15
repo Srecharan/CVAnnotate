@@ -1,6 +1,18 @@
 # CVAnnotate: Multi-Camera Vision System for Automated Object Detection and Tracking
 
+[![Python](https://img.shields.io/badge/Python-3.9-blue.svg)](https://www.python.org)
+[![OpenCV](https://img.shields.io/badge/OpenCV-4.11-red.svg)](https://opencv.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.6.0-orange.svg)](https://pytorch.org)
+[![ROS](https://img.shields.io/badge/ROS-1.6.0-brightgreen.svg)](https://www.ros.org)
+[![YOLOv8](https://img.shields.io/badge/YOLOv8-8.3.74-yellow.svg)](https://github.com/ultralytics/ultralytics)
+
 A comprehensive computer vision pipeline for automated object detection, segmentation, and tracking using multi-camera systems. This framework provides end-to-end solutions for data collection, processing, and real-time detection with specific focus on material tracking and worker safety.
+
+<p align="center">
+  <img src="assets/trash_mask.gif" alt="Real-time Material Segmentation Process" width="800"/>
+  <br>
+  <em>Real-time segmentation of materials on the conveyor belt using ROI-based detection</em>
+</p>
 
 ## ⚠️ Disclaimer
 This project was developed during a professional engagement with an industrial automation company. The codebase demonstrates the technical architecture and capabilities of the system while respecting data confidentiality. The example images and results shown in this repository represent only a small subset of the system's capabilities and are used solely for demonstration purposes. The actual dataset and production implementation remain proprietary.
@@ -14,12 +26,6 @@ CVAnnotate is an intelligent computer vision system that combines state-of-the-a
 ### Data Collection & Processing
 
 The `trash_seg.py` script initiates the pipeline by processing video feeds through defined regions of interest, automatically segmenting and storing materials for further processing. This foundational step creates the initial dataset of segmented materials that will be used throughout the pipeline.
-
-<p align="center">
-  <img src="assets/trash_mask.gif" alt="Real-time Material Segmentation Process" width="800"/>
-  <br>
-  <em>Real-time segmentation of materials on the conveyor belt using ROI-based detection</em>
-</p>
 
 <p align="center">
   <table>
