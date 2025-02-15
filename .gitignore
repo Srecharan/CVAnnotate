@@ -1,0 +1,62 @@
+# Dataset and generated data directories
+dataset/
+dataset.bag
+bins/
+Augmented_trash/
+Augmented_trash_seg/
+trash/
+trash_dataset/
+person/
+bin_screenshots_*/
+
+# Model weights
+*.pt
+SAM_best.pt
+
+# Description files
+description.txt
+
+# Python-related
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# Virtual Environment
+venv/
+ENV/
+
+# IDE-specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.env
+
+# Log files
+*.log
+logs/
+runs/Yolo_Person.pdf
+Yolo_Person.pdf
