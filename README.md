@@ -21,7 +21,74 @@ This project was developed during a professional engagement with an industrial a
 
 CVAnnotate is an intelligent computer vision system that combines state-of-the-art object detection, instance segmentation, and tracking capabilities. The system leverages multiple camera feeds to create a robust pipeline for automated data collection, real-time detection, and worker safety monitoring. Through smart region-of-interest management and intelligent counting mechanisms, the system can effectively track and classify materials while avoiding false positives.
 
+
 ## 🏗️ System Architecture
+
+### System Pipeline
+
+```
+[Multi-Camera Input Streams] -> [ROS Bag Recording]
+                                      |
+                                      v
+[Initial Processing]
+      |
+      |---> [ROI Definition] (get_coordinates.py)
+      |---> [Bin Mapping] (bin.py)
+      |
+      v
+[Parallel Processing Pipelines]
+      |
+      |---> [Material Pipeline]
+      |      |
+      |      |---> [Segmentation] (trash_seg.py + YOLOv8)
+      |      |---> [Data Collection] -> [Trash Directory]
+      |      |---> [Augmentation] (data_aug_collector.py)
+      |            |
+      |            |---> [Augmented_trash] (Detection Dataset)
+      |            |---> [Augmented_trash_seg] (Segmentation Dataset)
+      |
+      |---> [Worker Safety Pipeline]
+             |
+             |---> [Person Detection] (people_detector.py)
+             |---> [Safety Zone Tracking]
+             |---> [Worker Dataset Generation]
+
+-----------------------------------------------------------
+
+[Model Training]
+      |
+      |---> [YOLOv8 Training]
+             |
+             |---> [Material Detection Model] ---------|
+             |---> [Worker Detection Model] -----------|
+                                                       |
+                                                       |
+[Trained Weights Used for Real-Time Deployment] <------|
+
+-----------------------------------------------------------
+
+[Real-Time System] (pick_counter.py)
+      |
+      |---> [Material Tracking]
+      |     |
+      |     |---> [Density Monitoring]
+      |     |---> [Smart Counting]
+      |
+      |---> [Safety Monitoring]
+            |
+            |---> [Worker Position Tracking]
+            |---> [Collision Prevention]
+            |---> [False Positive Filtering]
+
+-----------------------------------------------------------
+
+[System Output]
+      |
+      |---> [Material Counts]
+      |---> [Density Alerts]
+      |---> [Safety Warnings]
+```
+
 
 ### Data Collection & Processing
 

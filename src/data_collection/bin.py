@@ -75,5 +75,5 @@ def process_bag(bag_path, bins, num_frames=10):
 if __name__ == "__main__":
     bins = load_bins("bins.json")
     
-    bag_path = "dataset.bag"  # Replace with your bag file path
+    bag_path = "dataset.bag" 
     process_bag(bag_path, bins, num_frames=10)
