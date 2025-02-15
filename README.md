@@ -186,17 +186,14 @@ The heart of the system lies in `pick_counter.py`, which implements an intellige
   - mAP[50-95]: 0.968 (96.8%)
   - Precision: 0.999
   - Recall: 0.999
-  - F1-Score: 0.999
-  - IOU: 0.92
+
 
 ### Worker Detection
 - **Person Detection:**
   - mAP[50]: 0.977
   - mAP[50-95]: 0.745
-  - F1-Score: 0.968
   - Precision: 0.974
   - Recall: 0.962
-  - IOU: 0.86
 
 ### System Performance
 - Real-time processing at 30 FPS
