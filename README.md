@@ -14,6 +14,18 @@ A comprehensive computer vision pipeline for automated object detection, segment
   <em>Real-time segmentation of materials on the conveyor belt using ROI-based detection</em>
 </p>
 
+## 1-min Overview
+
+<div align="center">
+  <a href="https://youtu.be/eRFWZjJbcgI  #remove">
+    <img src="https://img.youtube.com/vi/eRFWZjJbcgI/maxresdefault.jpg #remove" alt="Watch the video" style="width: 100%; max-width: 800px;">
+    <br>
+    <img src="https://img.shields.io/badge/Watch%20on-YouTube-red?style=for-the-badge&logo=youtube" alt="Watch on YouTube">
+  </a>
+  <br><br>
+  <em>Technical overview of CVAnnotate's architecture and implementation</em>
+</div>
+
 ## ⚠️ Disclaimer
 This project was developed during a professional engagement with an industrial automation company. The codebase demonstrates the technical architecture and capabilities of the system while respecting data confidentiality. The example images and results shown in this repository represent only a small subset of the system's capabilities and are used solely for demonstration purposes. The actual dataset and production implementation remain proprietary.
 
