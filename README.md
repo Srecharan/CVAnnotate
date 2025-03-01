@@ -4,7 +4,7 @@
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.11-red.svg)](https://opencv.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.6.0-orange.svg)](https://pytorch.org)
 [![ROS](https://img.shields.io/badge/ROS-1.6.0-brightgreen.svg)](https://www.ros.org)
-[![YOLOv8](https://img.shields.io/badge/YOLOv8-8.3.74-yellow.svg)](https://github.com/ultralytics/ultralytics)
+[![YOLOv5](https://img.shields.io/badge/YOLOv5-6.2.0-yellow.svg)](https://github.com/ultralytics/yolov5)
 
 A comprehensive computer vision pipeline for automated object detection, segmentation, and tracking using multi-camera systems. This framework provides end-to-end solutions for data collection, processing, and real-time detection with specific focus on material tracking and worker safety.
 
@@ -33,10 +33,15 @@ This project was developed during a professional engagement with an industrial a
 
 CVAnnotate is an intelligent computer vision system that combines state-of-the-art object detection, instance segmentation, and tracking capabilities. The system leverages multiple camera feeds to create a robust pipeline for automated data collection, real-time detection, and worker safety monitoring. Through smart region-of-interest management and intelligent counting mechanisms, the system can effectively track and classify materials while avoiding false positives.
 
-
 ## 🏗️ System Architecture
 
 ### System Pipeline
+
+<p align="center">
+  <img src="assets/CVannote_sys.drawio.png" alt="System Architecture Diagram" width="800"/>
+  <br>
+  <em>End-to-end system architecture showing the complete pipeline from data collection to deployment</em>
+</p>
 
 ```
 [Multi-Camera Input Streams] -> [ROS Bag Recording]
@@ -52,7 +57,12 @@ CVAnnotate is an intelligent computer vision system that combines state-of-the-a
 				      |
 				      |---> [Material Pipeline]
 				      |      |
-				      |      |---> [Segmentation] (trash_seg.py + YOLOv8)
+				      |      |---> [Initial Dataset Creation]
+				      |      |     |---> [Manual Labeling (LabelMe)]
+				      |      |     |---> [Traditional CV (Canny, Contours)]
+				      |      |
+				      |      |---> [Mask R-CNN Fine-Tuning]
+				      |      |---> [Material Segmentation] (trash_seg.py)
 				      |      |---> [Data Collection] -> [Trash Directory]
 				      |      |---> [Augmentation] (data_aug_collector.py)
 				      |            |
@@ -62,14 +72,14 @@ CVAnnotate is an intelligent computer vision system that combines state-of-the-a
 				      |---> [Worker Safety Pipeline]
 					     |
 					     |---> [Person Detection] (people_detector.py)
-					     |---> [Safety Zone Tracking]
+					     |---> [HSV-based Safety Vest Detection]
 					     |---> [Worker Dataset Generation]
 
 				-----------------------------------------------------------
 
 				[Model Training]
 				      |
-				      |---> [YOLOv8 Training]
+				      |---> [YOLOv5 Training]
 					     |
 					     |---> [Material Detection Model] ---------|
 					     |---> [Worker Detection Model] -----------|
@@ -83,7 +93,8 @@ CVAnnotate is an intelligent computer vision system that combines state-of-the-a
 				      |
 				      |---> [Material Tracking]
 				      |     |
-				      |     |---> [Density Monitoring]
+				      |     |---> [ROI-based Detection]
+				      |     |---> [MOG2 Background Subtraction]
 				      |     |---> [Smart Counting]
 				      |
 				      |---> [Safety Monitoring]
@@ -101,10 +112,19 @@ CVAnnotate is an intelligent computer vision system that combines state-of-the-a
 				      |---> [Safety Warnings]
 ```
 
-
 ### Data Collection & Processing
 
-The `trash_seg.py` script initiates the pipeline by processing video feeds through defined regions of interest, automatically segmenting and storing materials for further processing. This foundational step creates the initial dataset of segmented materials that will be used throughout the pipeline.
+#### Initial Dataset Creation
+The project began with creating a small initial dataset of approximately 800 images (200 per material class). This was accomplished through:
+- Manual annotation using LabelMe to create precise segmentation masks
+- Traditional computer vision techniques (Otsu's thresholding, Canny edge detection)
+- Semi-automated annotation using bounding boxes from a pre-trained object detector
+
+#### Mask R-CNN Fine-tuning
+Using the initial dataset, a pre-trained Mask R-CNN model (initially trained on COCO dataset) was fine-tuned to create a custom segmentation model specifically adapted to detect and segment material types on the conveyor belt.
+
+#### Automated Segmentation
+The `trash_seg.py` script leverages the fine-tuned Mask R-CNN to process video feeds through defined regions of interest, automatically segmenting and storing materials for further processing. This accelerated dataset creation by generating 43,000+ segmented material instances, dramatically improving data collection efficiency.
 
 <p align="center">
   <table>
@@ -121,6 +141,7 @@ The `trash_seg.py` script initiates the pipeline by processing video feeds throu
   <em>Individual material instances segmented and extracted from the conveyor belt stream</em>
 </p>
 
+#### Worker Detection
 The `people_detector.py` script handles worker detection using color-based recognition of safety equipment, creating precise bounding boxes for safety monitoring. This component is crucial for maintaining worker safety and preventing false detections during material tracking.
 
 <p align="center">
@@ -138,6 +159,7 @@ The `people_detector.py` script handles worker detection using color-based recog
   <em>Worker detection system identifying safety vest-wearing personnel with precise bounding boxes</em>
 </p>
 
+#### Environment Mapping
 The environment mapping process, handled by `bin.py`, captures and catalogs the static elements of the workspace, particularly focusing on bin locations and their spatial relationships. This creates a comprehensive map of the operational environment.
 
 <p align="center">
@@ -155,6 +177,7 @@ The environment mapping process, handled by `bin.py`, captures and catalogs the 
   <em>Automated bin detection and mapping system identifying material collection zones</em>
 </p>
 
+#### ROI Management
 The `get_coordinates.py` script manages ROI definitions and ensures proper spatial calibration across the system. It provides the framework with precise location data for bins and tracking zones.
 
 <p align="center">
@@ -163,6 +186,7 @@ The `get_coordinates.py` script manages ROI definitions and ensures proper spati
   <em>Interactive interface for defining and managing regions of interest across the system</em>
 </p>
 
+#### Data Augmentation
 The `data_aug_collector.py` script performs data augmentation, creating two distinct datasets: 'Augmented_trash' for detection training and 'Augmented_trash_seg' for segmentation training. This dual-dataset approach enables the system to handle both quick detection tasks and more complex segmentation challenges.
 
 <p align="center">
@@ -182,7 +206,7 @@ The `data_aug_collector.py` script performs data augmentation, creating two dist
 
 ### Real-time Detection System
 
-The heart of the system lies in `pick_counter.py`, which implements an intelligent counting mechanism that actively filters out false positives from worker interactions. The system dynamically switches between detection and segmentation based on scene complexity - utilizing lightweight detection for clear, simple scenes and falling back to precise segmentation when dealing with overlapping objects or complex scenarios.
+The heart of the system lies in `pick_counter.py`, which implements an intelligent counting mechanism that actively filters out false positives from worker interactions. By combining YOLOv5 detection with MOG2 background subtraction, the system achieves both high accuracy and excellent performance. ROI-based processing focuses computational resources where they're needed most, enabling real-time operation.
 
 <p align="center">
   <img src="assets/data_aug_op.jpg" alt="Real-time Detection Results" width="800"/>
@@ -214,14 +238,13 @@ The heart of the system lies in `pick_counter.py`, which implements an intellige
 - Robust to lighting variations and occlusions
 
 ## 🔄 Pipeline Flow
-1. Camera feeds are processed for material and worker detection
-2. ROI-based segmentation generates instance masks
-3. Data augmentation creates dual training datasets
-4. Detection models are trained using augmented data
-5. Real-time system performs adaptive detection and tracking
-6. Smart counting system manages object tracking and worker interactions
+1. Camera feeds are processed through ROI-based filtering
+2. Initial dataset created through manual and semi-automated labeling
+3. Mask R-CNN fine-tuned for accurate material segmentation
+4. Segmented instances extracted and augmented to create large training datasets
+5. YOLOv5 detection models trained for material and worker detection
+6. Real-time system integrates worker interaction filtering with material counting
+7. MOG2 background subtraction enhances detection in dynamic environments
+8. Smart counting system manages object tracking with false positive elimination
 
-## 📝 Technical Notes
-The system employs a dynamic approach to object detection and segmentation. While both YOLO-based detection and segmentation models are trained, the production system primarily utilizes the lightweight detection model for optimal performance. The segmentation capabilities are activated specifically for complex scenarios where higher precision is required, such as overlapping objects or crowded scenes. This adaptive approach ensures efficient resource utilization while maintaining high accuracy across various operational conditions.
-
-Training notebooks (Yolo_Trash.ipynb and Yolo_Person.ipynb) are provided to demonstrate the model training pipeline, though the trained weights are not included due to proprietary considerations. These notebooks handle the training process using the augmented datasets, producing the models used in the final deployment.
+Training notebooks (Yolo_Trash.ipynb and Yolo_Person.ipynb) demonstrate the model training pipeline, though the trained weights are not included due to proprietary considerations.
