@@ -174,5 +174,3 @@ The heart of the system is an intelligent counting mechanism that actively filte
 6. Real-time system integrates worker interaction filtering with material counting
 7. MOG2 background subtraction enhances detection in dynamic environments
 8. Smart counting system manages object tracking with false positive elimination
-
-Training notebooks demonstrate the model training pipeline, though the trained weights are not included due to proprietary considerations.
