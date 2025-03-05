@@ -21,7 +21,7 @@ CVAnnotate is an intelligent computer vision system that combines state-of-the-a
 ### System Pipeline
 
 <p align="center">
-  <img src="assets/sys_pipeline.png" alt="System Architecture Diagram" width="800"/>
+  <img src="assets/sys_pipeline.png" alt="System Architecture Diagram" width="3000"/>
   <br>
   <em>End-to-end system architecture showing the complete pipeline from data collection to deployment</em>
 </p>
