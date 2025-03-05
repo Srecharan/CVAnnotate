@@ -16,6 +16,13 @@ This project was developed during a professional engagement with an industrial a
 
 CVAnnotate is an intelligent computer vision system that combines state-of-the-art object detection, instance segmentation, and tracking capabilities. The system leverages multiple camera feeds to create a robust pipeline for automated data collection, real-time detection, and worker safety monitoring. Through smart region-of-interest management and intelligent counting mechanisms, the system can effectively track and classify materials while avoiding false positives.
 
+<p align="center">
+  <a href="assets/CV.pdf">
+    <img src="assets/first_page.png" width="600" alt="Computer Vision System Technical Overview"/>
+    <p align="center"><em>Click on the image to view the complete Technical Overview PDF</em></p>
+  </a>
+</p>
+
 ## 🏗️ System Architecture
 
 ### System Pipeline
