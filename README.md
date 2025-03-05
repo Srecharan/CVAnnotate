@@ -8,23 +8,6 @@
 
 A comprehensive computer vision pipeline for automated object detection, segmentation, and tracking using multi-camera systems. This framework provides end-to-end solutions for data collection, processing, and real-time detection with specific focus on material tracking and worker safety.
 
-<p align="center">
-  <img src="assets/trash_mask.gif" alt="Real-time Material Segmentation Process" width="800"/>
-  <br>
-  <em>Real-time segmentation of materials on the conveyor belt using ROI-based detection</em>
-</p>
-
-## 1-min Overview
-
-<div align="center">
-  <a href="https://youtu.be/eRFWZjJbcgI  #remove">
-    <img src="https://img.youtube.com/vi/eRFWZjJbcgI/maxresdefault.jpg #remove" alt="Watch the video" style="width: 100%; max-width: 800px;">
-    <br>
-    <img src="https://img.shields.io/badge/Watch%20on-YouTube-red?style=for-the-badge&logo=youtube" alt="Watch on YouTube">
-  </a>
-  <br><br>
-  <em>Technical overview of CVAnnotate's architecture and implementation</em>
-</div>
 
 ## ⚠️ Disclaimer
 This project was developed during a professional engagement with an industrial automation company. The codebase demonstrates the technical architecture and capabilities of the system while respecting data confidentiality. The example images and results shown in this repository represent only a small subset of the system's capabilities and are used solely for demonstration purposes. The actual dataset and production implementation remain proprietary.
@@ -207,6 +190,12 @@ The `data_aug_collector.py` script performs data augmentation, creating two dist
 ### Real-time Detection System
 
 The heart of the system lies in `pick_counter.py`, which implements an intelligent counting mechanism that actively filters out false positives from worker interactions. By combining YOLOv5 detection with MOG2 background subtraction, the system achieves both high accuracy and excellent performance. ROI-based processing focuses computational resources where they're needed most, enabling real-time operation.
+
+<p align="center">
+  <img src="assets/trash_mask.gif" alt="Real-time Material Segmentation Process" width="800"/>
+  <br>
+  <em>Real-time segmentation of materials on the conveyor belt using ROI-based detection</em>
+</p>
 
 <p align="center">
   <img src="assets/data_aug_op.jpg" alt="Real-time Detection Results" width="800"/>
