@@ -1,4 +1,4 @@
-# CVAnnotate: Multi-Camera Vision System for Automated Object Detection and Tracking
+# Multi-Camera Vision System for Automated Material Detection and Sorting
 
 [![Python](https://img.shields.io/badge/Python-3.9-blue.svg)](https://www.python.org)
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.11-red.svg)](https://opencv.org)
