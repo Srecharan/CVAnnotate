@@ -42,6 +42,7 @@ wheels/
 # Jupyter Notebook
 .ipynb_checkpoints
 *.ipynb_checkpoints
+notebooks/*.ipynb
 
 # Virtual Environment
 venv/
@@ -58,6 +59,6 @@ ENV/
 # Log files
 *.log
 logs/
-runs/Yolo_Person.pdf
+runs/
 Yolo_Person.pdf
 Yolo_Trash.pdf
