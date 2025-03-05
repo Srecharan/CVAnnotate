@@ -9,10 +9,10 @@
 A comprehensive computer vision pipeline for automated object detection, segmentation, and tracking using multi-camera systems. This framework provides end-to-end solutions for data collection, processing, and real-time detection with specific focus on material tracking and worker safety.
 
 
-## ⚠️ Disclaimer
+## Disclaimer
 This project was developed during a professional engagement with an industrial automation company. The codebase demonstrates the technical architecture and capabilities of the system while respecting data confidentiality. The example images and results shown in this repository represent only a small subset of the system's capabilities and are used solely for demonstration purposes. The actual dataset and production implementation remain proprietary.
 
-## 🔍 Project Overview
+## Project Overview
 
 CVAnnotate is an intelligent computer vision system that combines state-of-the-art object detection, instance segmentation, and tracking capabilities. The system leverages multiple camera feeds to create a robust pipeline for automated data collection, real-time detection, and worker safety monitoring. Through smart region-of-interest management and intelligent counting mechanisms, the system can effectively track and classify materials while avoiding false positives.
 
@@ -23,7 +23,7 @@ CVAnnotate is an intelligent computer vision system that combines state-of-the-a
   </a>
 </p>
 
-## 🏗️ System Architecture
+## System Architecture
 
 ### System Pipeline
 
@@ -46,7 +46,7 @@ The project began with creating a small initial dataset of approximately 800 ima
 Using the initial dataset, a pre-trained Mask R-CNN model (initially trained on COCO dataset) was fine-tuned to create a custom segmentation model specifically adapted to detect and segment material types on the conveyor belt.
 
 #### Automated Segmentation
-The `trash_seg.py` script leverages the fine-tuned Mask R-CNN to process video feeds through defined regions of interest, automatically segmenting and storing materials for further processing. This accelerated dataset creation by generating 43,000+ segmented material instances, dramatically improving data collection efficiency.
+The system leverages the fine-tuned Mask R-CNN to process video feeds through defined regions of interest, automatically segmenting and storing materials for further processing. This accelerated dataset creation by generating 43,000+ segmented material instances, dramatically improving data collection efficiency.
 
 <p align="center">
   <table>
@@ -64,7 +64,7 @@ The `trash_seg.py` script leverages the fine-tuned Mask R-CNN to process video f
 </p>
 
 #### Worker Detection
-The `people_detector.py` script handles worker detection using color-based recognition of safety equipment, creating precise bounding boxes for safety monitoring. This component is crucial for maintaining worker safety and preventing false detections during material tracking.
+The worker detection module handles worker detection using color-based recognition of safety equipment, creating precise bounding boxes for safety monitoring. This component is crucial for maintaining worker safety and preventing false detections during material tracking.
 
 <p align="center">
   <table>
@@ -82,7 +82,7 @@ The `people_detector.py` script handles worker detection using color-based recog
 </p>
 
 #### Environment Mapping
-The environment mapping process, handled by `bin.py`, captures and catalogs the static elements of the workspace, particularly focusing on bin locations and their spatial relationships. This creates a comprehensive map of the operational environment.
+The environment mapping process captures and catalogs the static elements of the workspace, particularly focusing on bin locations and their spatial relationships. This creates a comprehensive map of the operational environment.
 
 <p align="center">
   <table>
@@ -100,7 +100,7 @@ The environment mapping process, handled by `bin.py`, captures and catalogs the 
 </p>
 
 #### ROI Management
-The `get_coordinates.py` script manages ROI definitions and ensures proper spatial calibration across the system. It provides the framework with precise location data for bins and tracking zones.
+The ROI management module handles ROI definitions and ensures proper spatial calibration across the system. It provides the framework with precise location data for bins and tracking zones.
 
 <p align="center">
   <img src="assets/get_coord_op.png" alt="ROI Definition Interface" width="800"/>
@@ -109,7 +109,7 @@ The `get_coordinates.py` script manages ROI definitions and ensures proper spati
 </p>
 
 #### Data Augmentation
-The `data_aug_collector.py` script performs data augmentation, creating two distinct datasets: 'Augmented_trash' for detection training and 'Augmented_trash_seg' for segmentation training. This dual-dataset approach enables the system to handle both quick detection tasks and more complex segmentation challenges.
+The data augmentation module performs data augmentation, creating two distinct datasets: one for detection training and another for segmentation training. This dual-dataset approach enables the system to handle both quick detection tasks and more complex segmentation challenges.
 
 <p align="center">
   <table>
@@ -128,7 +128,7 @@ The `data_aug_collector.py` script performs data augmentation, creating two dist
 
 ### Real-time Detection System
 
-The heart of the system lies in `pick_counter.py`, which implements an intelligent counting mechanism that actively filters out false positives from worker interactions. By combining YOLOv5 detection with MOG2 background subtraction, the system achieves both high accuracy and excellent performance. ROI-based processing focuses computational resources where they're needed most, enabling real-time operation.
+The heart of the system is an intelligent counting mechanism that actively filters out false positives from worker interactions. By combining YOLOv5 detection with MOG2 background subtraction, the system achieves both high accuracy and excellent performance. ROI-based processing focuses computational resources where they're needed most, enabling real-time operation.
 
 <p align="center">
   <img src="assets/trash_mask.gif" alt="Real-time Material Segmentation Process" width="800"/>
@@ -142,7 +142,7 @@ The heart of the system lies in `pick_counter.py`, which implements an intellige
   <em>Real-time detection results from the trained model showing system performance in production environment</em>
 </p>
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 ### Object Detection
 - **Material Detection:**
@@ -165,7 +165,7 @@ The heart of the system lies in `pick_counter.py`, which implements an intellige
 - 95% detection accuracy
 - Robust to lighting variations and occlusions
 
-## 🔄 Pipeline Flow
+## Pipeline Flow
 1. Camera feeds are processed through ROI-based filtering
 2. Initial dataset created through manual and semi-automated labeling
 3. Mask R-CNN fine-tuned for accurate material segmentation
@@ -175,4 +175,4 @@ The heart of the system lies in `pick_counter.py`, which implements an intellige
 7. MOG2 background subtraction enhances detection in dynamic environments
 8. Smart counting system manages object tracking with false positive elimination
 
-Training notebooks (Yolo_Trash.ipynb and Yolo_Person.ipynb) demonstrate the model training pipeline, though the trained weights are not included due to proprietary considerations.
+Training notebooks demonstrate the model training pipeline, though the trained weights are not included due to proprietary considerations.
