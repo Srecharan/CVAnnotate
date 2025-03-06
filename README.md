@@ -18,7 +18,7 @@ CVAnnotate is an intelligent computer vision system that combines state-of-the-a
 
 <p align="center">
   <a href="assets/CV.pdf">
-    <img src="assets/first_page.png" width="600" alt="Computer Vision System Technical Overview"/>
+    <img src="assets/First_page.png" width="600" alt="Computer Vision System Technical Overview"/>
     <p align="center"><em>Click on the image to view the complete Technical Overview PDF</em></p>
   </a>
 </p>
